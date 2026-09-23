@@ -99,8 +99,8 @@ jobs:
           ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
         run: |
           IMAGE_URI=$ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPOSITORY:$COMMIT_SHA
-          aws ecs update-express-gateway-service --service-arn $SERVICE_ARN --primary-container image=$IMAGE_URI
-
+          aws ecs update-express-gateway-service --service-arn arn:aws:ecs:us-east-1:825967678201:service/default/PrimeWebsite --primary-container image=825967678201.dkr.ecr.us-east-1.amazonaws.com/prime-website:$COMMIT_SHA
+#          aws ecs update-express-gateway-service --service-arn $SERVICE_ARN --primary-container image=$IMAGE_URI
       - name: Run Wiz CLI image tag
         env:
           ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
